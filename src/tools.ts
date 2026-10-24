@@ -62,13 +62,13 @@ export async function officialStores(brandQuery: string): Promise<string> {
     return [`${brand.name} has no stores on file yet.`, brandUrl(brand.slug)].join("\n");
   }
 
-  const lines = [`${brand.name} — official stores tracked by Dropify:`];
+  const lines = [`${brand.name}: official stores tracked by Dropify:`];
   for (const store of stores) {
     const region = store.proxyCountryCode ?? "unknown region";
     const free = store.hasFreeAccess ? "free on Dropify" : "All Access (paid)";
     const status = store.isPaused ? " [paused]" : store.isHidden ? " [hidden]" : "";
-    const url = store.url ? ` — ${store.url}` : "";
-    lines.push(`- ${store.name} (${region}): ${free}${url}${status}`);
+    const url = store.url ? `. ${store.url}` : "";
+    lines.push(`- ${store.name} (${region}), ${free}${url}${status}`);
   }
   lines.push(brandUrl(brand.slug));
   return lines.join("\n");
@@ -81,6 +81,6 @@ export async function restockAlertLink(brandQuery: string): Promise<string> {
 
   const url = brandUrl(brand.slug);
   const howTo =
-    "On the brand page, follow the store(s) you care about — Dropify alerts you the moment one restocks or drops.";
+    "On the brand page, follow the store(s) you care about. Dropify alerts you the moment one restocks or drops.";
   return [`Set restock alerts for ${brand.name}:`, url, howTo].join("\n");
 }

@@ -67,9 +67,9 @@ on Dropify, and the official URL when Dropify exposes one.
 Example: `official_stores({ brand: "bts" })`
 
 ```
-BTS — official stores tracked by Dropify:
-- BTS US (US): free on Dropify — https://store.weverse.io/...
-- BTS JP (JP): All Access (paid)
+BTS: official stores tracked by Dropify:
+- BTS US (US), free on Dropify. https://store.weverse.io/...
+- BTS JP (JP), All Access (paid)
 ...
 https://dropify.cloud/brand/bts?utm_source=mcp
 ```
@@ -84,7 +84,7 @@ Example: `restock_alert_link({ brand: "bts" })`
 ```
 Set restock alerts for BTS:
 https://dropify.cloud/brand/bts?utm_source=mcp
-On the brand page, follow the store(s) you care about — Dropify alerts you the
+On the brand page, follow the store(s) you care about. Dropify alerts you the
 moment one restocks or drops.
 ```
 
