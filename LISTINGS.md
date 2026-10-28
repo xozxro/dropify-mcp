@@ -1,64 +1,33 @@
-# Listing text (prepared, not submitted)
+# Listing text
 
-Draft copy for third-party MCP directories. Not submitted anywhere yet; paste
-as needed per site's submission form.
+Copy for MCP directories and registries.
 
 ## Common fields
 
 - **Name:** dropify-mcp
-- **One-line:** Official merch store lookup and restock alert links for AI assistants, from Dropify.
+- **Title:** Dropify
+- **One-line:** Instant restock and drop alerts for official artist and brand merch stores.
 - **Repository:** https://github.com/xozxro/dropify-mcp
 - **Homepage:** https://dropify.cloud
 - **License:** MIT
-- **Package:** `dropify-mcp` on npm (run with `npx -y dropify-mcp`)
-- **Topics/tags:** mcp, model-context-protocol, merch, restock-alerts, music
+- **Transport:** stdio, Node 20+
+- **Run:** `npx -y github:xozxro/dropify-mcp`
+- **Topics:** mcp, mcp-server, model-context-protocol, merch, restock-alerts, dropify
 
-## Short description (1-2 sentences)
+## Short description
 
-Dropify tracks official artist and brand merch stores and restock alerts.
-This MCP server lets an AI assistant look up a brand's official stores, which
-ones are free to track, and where to set restock alerts, straight from
-Dropify's public API.
+Look up the official merch stores Dropify tracks for an artist or brand, then get
+the page where restock and drop alerts are set.
 
 ## Long description
 
-dropify-mcp connects AI assistants to Dropify's merch tracking data. It
-exposes three tools: `find_brand` fuzzy-matches an artist or brand name and
-returns store counts and which store is free; `official_stores` lists every
-official store Dropify tracks for a brand with region, free/paid status, and
-the store URL when available; `restock_alert_link` returns the Dropify page
-where a user sets drop and restock alerts. Data is read-only from Dropify's
-public API, cached in memory for 10 minutes. Unknown brands point to
-https://dropify.cloud/request instead of guessing.
+dropify-mcp connects AI assistants to Dropify's merch tracking data. `find_brand`
+fuzzy-matches an artist or brand name, `official_stores` lists the official
+stores tracked for it with region and store URL, and `restock_alert_link` returns
+the Dropify page where restock and drop alerts are set. Read-only, from Dropify's
+public API. Unknown brands point to https://dropify.cloud/request.
 
-## smithery.ai
-
-- **Title:** Dropify Merch Lookup
-- **Description:** Look up official artist/brand merch stores and restock
-  alert links from Dropify, the merch store tracker. Three tools:
-  `find_brand`, `official_stores`, `restock_alert_link`.
-- **Category:** Shopping / Data
-- **Repo:** https://github.com/xozxro/dropify-mcp
-
-## mcp.so
-
-- **Name:** dropify-mcp
-- **Tagline:** Official merch store lookup and restock alerts, from Dropify.
-- **Description:** (use "Long description" above)
-- **Tags:** shopping, music, merch, alerts
-
-## glama.ai
-
-- **Name:** dropify-mcp
-- **Summary:** (use "Short description" above)
-- **Repository:** https://github.com/xozxro/dropify-mcp
-- **Transport:** stdio
-- **Runtime:** Node.js 20+
-
-## Official MCP registry (modelcontextprotocol/registry)
+## Official MCP Registry
 
 - **name:** io.github.xozxro/dropify-mcp
-- **description:** (use "Short description" above)
-- **repository.url:** https://github.com/xozxro/dropify-mcp
-- **version:** 0.1.0
-- **packages:** npm, `dropify-mcp`
+- **package:** mcpb, attached to the GitHub release

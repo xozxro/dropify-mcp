@@ -1,10 +1,30 @@
+<p align="center"><img src="logo.png" alt="Dropify" width="120" height="120"></p>
+
 # dropify-mcp
 
-MCP server for [Dropify](https://dropify.cloud), the official artist/brand merch store tracker.
-It gives AI assistants three tools to look up official stores and restock alerts.
-Data comes straight from Dropify's public API, read-only, cached for 10 minutes.
+Instant restock and drop alerts for official artist and brand merch stores.
+
+An MCP server for [Dropify](https://dropify.cloud). Your AI assistant can look up the
+official stores Dropify tracks for an artist or brand, then point you to the page where
+restock and drop alerts are set. Read-only, straight from Dropify's public API.
+
+## Tools
+
+| Tool | What it does |
+| --- | --- |
+| `find_brand` | Fuzzy-match an artist or brand name. Returns the brand, its genre, store coverage and its Dropify page. |
+| `official_stores` | List the official stores tracked for a brand: region, access level and the store URL when available. |
+| `restock_alert_link` | Get the Dropify page where restock and drop alerts are set for a brand, with a one-line how-to. |
+
+Try asking: "Which official stores does Dropify track for BTS?" or "Where can I get
+restock alerts for Taylor Swift merch?"
+
+An unrecognized name returns a note with a link to request it at
+https://dropify.cloud/request.
 
 ## Install
+
+Runs on Node 20+. The server speaks stdio and needs no API key.
 
 ### Claude Desktop
 
@@ -15,7 +35,42 @@ Add to `claude_desktop_config.json`:
   "mcpServers": {
     "dropify": {
       "command": "npx",
-      "args": ["-y", "dropify-mcp"]
+      "args": ["-y", "github:xozxro/dropify-mcp"]
+    }
+  }
+}
+```
+
+Or download `dropify-mcp-<version>.mcpb` from the
+[latest release](https://github.com/xozxro/dropify-mcp/releases/latest) and open it in
+Claude Desktop.
+
+### Cursor
+
+Add to `~/.cursor/mcp.json`, or `.cursor/mcp.json` in a project:
+
+```json
+{
+  "mcpServers": {
+    "dropify": {
+      "command": "npx",
+      "args": ["-y", "github:xozxro/dropify-mcp"]
+    }
+  }
+}
+```
+
+### Cline
+
+Open the MCP Servers panel, choose Configure MCP Servers, and add to `cline_mcp_settings.json`:
+
+```json
+{
+  "mcpServers": {
+    "dropify": {
+      "command": "npx",
+      "args": ["-y", "github:xozxro/dropify-mcp"],
+      "disabled": false
     }
   }
 }
@@ -24,88 +79,30 @@ Add to `claude_desktop_config.json`:
 ### Claude Code
 
 ```
-claude mcp add dropify -- npx -y dropify-mcp
+claude mcp add dropify -- npx -y github:xozxro/dropify-mcp
 ```
-
-### Cursor
-
-Add to Cursor's MCP settings (`~/.cursor/mcp.json` or the project's `.cursor/mcp.json`):
-
-```json
-{
-  "mcpServers": {
-    "dropify": {
-      "command": "npx",
-      "args": ["-y", "dropify-mcp"]
-    }
-  }
-}
-```
-
-## Tools
-
-### `find_brand`
-
-Fuzzy-match an artist or brand name against Dropify's tracked brands. Returns the
-brand name, store counts, which store is free, and the Dropify page.
-
-Example: `find_brand({ query: "taylor swift" })`
-
-```
-Taylor Swift
-Genre: Pop
-Stores tracked: 10 (2 free on Dropify, 8 All Access)
-Free store(s): Taylor Swift US, Taylor Swift UK
-https://dropify.cloud/brand/taylor-swift?utm_source=mcp
-```
-
-### `official_stores`
-
-List every official store Dropify tracks for a brand: region, whether it's free
-on Dropify, and the official URL when Dropify exposes one.
-
-Example: `official_stores({ brand: "bts" })`
-
-```
-BTS: official stores tracked by Dropify:
-- BTS US (US), free on Dropify. https://store.weverse.io/...
-- BTS JP (JP), All Access (paid)
-...
-https://dropify.cloud/brand/bts?utm_source=mcp
-```
-
-### `restock_alert_link`
-
-Get the Dropify page where a user sets restock/drop alerts for a brand, plus a
-one-line how-to.
-
-Example: `restock_alert_link({ brand: "bts" })`
-
-```
-Set restock alerts for BTS:
-https://dropify.cloud/brand/bts?utm_source=mcp
-On the brand page, follow the store(s) you care about. Dropify alerts you the
-moment one restocks or drops.
-```
-
-An unrecognized brand returns a note that Dropify doesn't track it yet, with a
-link to request it at https://dropify.cloud/request.
 
 ## Data source
 
-Reads only Dropify's public, read-only API:
-`/api/landing/brands` and `/api/all-sources`. No write access, no scraping, no
-private endpoints. Responses are cached in memory for 10 minutes per process.
+Reads only Dropify's public API: `/api/landing/brands` and `/api/all-sources`.
+No write access, no scraping, no private endpoints. Responses are cached in memory
+for 10 minutes per process.
 
 ## Development
-
-Requires Node 20+.
 
 ```
 npm install
 npm run build
 npm test
 ```
+
+`dist/` is committed so `npx github:xozxro/dropify-mcp` starts without a build step.
+Run `npm run build` and commit the result after changing `src/`.
+
+## Links
+
+- Dropify: https://dropify.cloud
+- Issues: https://github.com/xozxro/dropify-mcp/issues
 
 ## License
 
