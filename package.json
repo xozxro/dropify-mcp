@@ -1,14 +1,16 @@
 {
   "name": "dropify-mcp",
-  "version": "0.1.0",
-  "description": "MCP server for Dropify: official artist/brand merch store lookup and restock alert links.",
+  "version": "0.1.1",
+  "description": "Instant restock and drop alerts for official artist and brand merch stores. MCP server from Dropify.",
   "license": "MIT",
   "type": "module",
   "bin": {
     "dropify-mcp": "dist/index.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "manifest.json",
+    "logo.png"
   ],
   "engines": {
     "node": ">=20"
@@ -23,6 +25,7 @@
   },
   "keywords": [
     "mcp",
+    "mcp-server",
     "model-context-protocol",
     "merch",
     "restock-alerts",

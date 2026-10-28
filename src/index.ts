@@ -1,12 +1,17 @@
 #!/usr/bin/env node
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { readFileSync } from "node:fs";
 import { z } from "zod";
 import { findBrand, officialStores, restockAlertLink } from "./tools.js";
 
+const { version } = JSON.parse(
+  readFileSync(new URL("../package.json", import.meta.url), "utf8"),
+) as { version: string };
+
 const server = new McpServer({
   name: "dropify-mcp",
-  version: "0.1.0",
+  version,
 });
 
 function textResult(text: string) {
