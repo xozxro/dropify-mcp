@@ -1,0 +1,20 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.xozxro/dropify-mcp",
+  "title": "Dropify",
+  "description": "Official merch store lookup and instant restock alerts for artists and brands, from Dropify.",
+  "version": "0.1.1",
+  "websiteUrl": "https://dropify.cloud",
+  "repository": {
+    "url": "https://github.com/xozxro/dropify-mcp",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/xozxro/dropify-mcp/releases/download/v0.1.1/dropify-mcp-0.1.1.mcpb",
+      "fileSha256": "835440c6861b0147df7f0ca2dd30c8c37c8b12a9d2a536c26338fe8e88285788",
+      "transport": { "type": "stdio" }
+    }
+  ]
+}
