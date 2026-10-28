@@ -1,0 +1,37 @@
+{
+  "manifest_version": "0.3",
+  "name": "dropify-mcp",
+  "display_name": "Dropify",
+  "version": "0.1.1",
+  "description": "Instant restock and drop alerts for official artist and brand merch stores.",
+  "long_description": "Look up the official merch stores Dropify tracks for an artist or brand, then get the page where restock and drop alerts are set. Read-only, straight from Dropify's public API.",
+  "author": {
+    "name": "Dropify",
+    "url": "https://dropify.cloud"
+  },
+  "homepage": "https://dropify.cloud",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xozxro/dropify-mcp"
+  },
+  "support": "https://github.com/xozxro/dropify-mcp/issues",
+  "icon": "logo.png",
+  "license": "MIT",
+  "keywords": ["merch", "restock-alerts", "drops", "music", "dropify"],
+  "server": {
+    "type": "node",
+    "entry_point": "dist/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/dist/index.js"]
+    }
+  },
+  "tools": [
+    { "name": "find_brand", "description": "Fuzzy-match an artist or brand name against Dropify's tracked brands." },
+    { "name": "official_stores", "description": "List the official stores Dropify tracks for a brand." },
+    { "name": "restock_alert_link", "description": "Get the Dropify page where restock and drop alerts are set for a brand." }
+  ],
+  "compatibility": {
+    "runtimes": { "node": ">=20.0.0" }
+  }
+}
