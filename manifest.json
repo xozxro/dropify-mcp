@@ -4,7 +4,7 @@
   "display_name": "Dropify",
   "version": "0.1.1",
   "description": "Instant restock and drop alerts for official artist and brand merch stores.",
-  "long_description": "Look up the official merch stores Dropify tracks for an artist or brand, then get the page where restock and drop alerts are set. Read-only, straight from Dropify's public API.",
+  "long_description": "Look up the official merch stores for an artist or brand. Then get the page where restock and drop alerts are set. Read-only, straight from Dropify's public API.",
   "author": {
     "name": "Dropify",
     "url": "https://dropify.cloud"

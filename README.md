@@ -1,14 +1,15 @@
 <p align="center"><img src="logo.png" alt="Dropify" width="120" height="120"></p>
 
-# dropify-mcp
+# Dropify MCP server
 
 Instant restock and drop alerts for official artist and brand merch stores.
 
-An MCP server for [Dropify](https://dropify.cloud). Your AI assistant can look up the
-official stores Dropify tracks for an artist or brand, then point you to the page where
-restock and drop alerts are set. Read-only, straight from Dropify's public API.
+An MCP server for [Dropify](https://dropify.cloud).
+Look up the official stores for any artist or brand.
+Then jump to the page where restock and drop alerts are set.
+Read-only, straight from Dropify's public API.
 
-## Tools
+## Available tools
 
 | Tool | What it does |
 | --- | --- |
@@ -16,17 +17,20 @@ restock and drop alerts are set. Read-only, straight from Dropify's public API.
 | `official_stores` | List the official stores tracked for a brand: region, access level and the store URL when available. |
 | `restock_alert_link` | Get the Dropify page where restock and drop alerts are set for a brand, with a one-line how-to. |
 
-Try asking: "Which official stores does Dropify track for BTS?" or "Where can I get
-restock alerts for Taylor Swift merch?"
+Try asking:
 
-An unrecognized name returns a note with a link to request it at
+- "What are the official BTS merch stores?"
+- "Where can I get restock alerts for Taylor Swift merch?"
+
+Unknown names return a link to request them at
 https://dropify.cloud/request.
 
-## Install
+## Install the server
 
-Runs on Node 20+. The server speaks stdio and needs no API key.
+Runs on Node 20+.
+It speaks stdio and needs no API key.
 
-### Claude Desktop
+### Claude Desktop setup
 
 Add to `claude_desktop_config.json`:
 
@@ -42,10 +46,10 @@ Add to `claude_desktop_config.json`:
 ```
 
 Or download `dropify-mcp-<version>.mcpb` from the
-[latest release](https://github.com/xozxro/dropify-mcp/releases/latest) and open it in
-Claude Desktop.
+[latest release](https://github.com/xozxro/dropify-mcp/releases/latest)
+and open it in Claude Desktop.
 
-### Cursor
+### Cursor setup
 
 Add to `~/.cursor/mcp.json`, or `.cursor/mcp.json` in a project:
 
@@ -60,9 +64,10 @@ Add to `~/.cursor/mcp.json`, or `.cursor/mcp.json` in a project:
 }
 ```
 
-### Cline
+### Cline setup
 
-Open the MCP Servers panel, choose Configure MCP Servers, and add to `cline_mcp_settings.json`:
+Open the MCP Servers panel and choose Configure MCP Servers.
+Then add this to `cline_mcp_settings.json`:
 
 ```json
 {
@@ -76,19 +81,13 @@ Open the MCP Servers panel, choose Configure MCP Servers, and add to `cline_mcp_
 }
 ```
 
-### Claude Code
+### Claude Code setup
 
 ```
 claude mcp add dropify -- npx -y github:xozxro/dropify-mcp
 ```
 
-## Data source
-
-Reads only Dropify's public API: `/api/landing/brands` and `/api/all-sources`.
-No write access, no scraping, no private endpoints. Responses are cached in memory
-for 10 minutes per process.
-
-## Development
+## Build from source
 
 ```
 npm install
@@ -99,11 +98,11 @@ npm test
 `dist/` is committed so `npx github:xozxro/dropify-mcp` starts without a build step.
 Run `npm run build` and commit the result after changing `src/`.
 
-## Links
+## Links and support
 
 - Dropify: https://dropify.cloud
 - Issues: https://github.com/xozxro/dropify-mcp/issues
 
-## License
+## License and use
 
 MIT
