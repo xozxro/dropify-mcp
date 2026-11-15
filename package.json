@@ -1,6 +1,6 @@
 {
   "name": "dropify-mcp",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Instant restock and drop alerts for official artist and brand merch stores. MCP server from Dropify.",
   "license": "MIT",
   "type": "module",

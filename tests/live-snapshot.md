@@ -1,6 +1,6 @@
 # Live snapshot
 
-Generated 2026-10-24T02:53:28.691Z against the live Dropify API.
+Generated 2026-11-15T06:13:59.555Z against the live Dropify API.
 
 ## find_brand("Taylor Swift")
 

@@ -27,7 +27,27 @@ test("connects and lists tools", async () => {
   await client.connect(transport);
   const { tools } = await client.listTools();
   const names = tools.map((t) => t.name).sort();
-  assert.deepEqual(names, ["find_brand", "official_stores", "restock_alert_link"]);
+  assert.deepEqual(names, [
+    "find_brand",
+    "get_product",
+    "list_artists",
+    "list_products",
+    "list_stores",
+    "my_access",
+    "official_stores",
+    "recent_changes",
+    "restock_alert_link",
+    "search_products",
+  ]);
+});
+
+test("a token tool without DROPIFY_TOKEN answers with the setup message", async () => {
+  const result = await client.callTool({ name: "my_access", arguments: {} });
+  assert.equal(result.isError, true);
+  assert.equal(
+    result.content?.[0]?.text,
+    "This tool needs a Dropify token. Create one at https://app.dropify.cloud/developers and set DROPIFY_TOKEN.",
+  );
 });
 
 async function callAndRecord(toolName, args, heading) {

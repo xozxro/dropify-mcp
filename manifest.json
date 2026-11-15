@@ -2,7 +2,7 @@
   "manifest_version": "0.3",
   "name": "dropify-mcp",
   "display_name": "Dropify",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Instant restock and drop alerts for official artist and brand merch stores.",
   "long_description": "Look up the official merch stores for an artist or brand. Then get the page where restock and drop alerts are set. Read-only, straight from Dropify's public API.",
   "author": {
@@ -17,21 +17,80 @@
   "support": "https://github.com/xozxro/dropify-mcp/issues",
   "icon": "logo.png",
   "license": "MIT",
-  "keywords": ["merch", "restock-alerts", "drops", "music", "dropify"],
+  "keywords": [
+    "merch",
+    "restock-alerts",
+    "drops",
+    "music",
+    "dropify"
+  ],
   "server": {
     "type": "node",
     "entry_point": "dist/index.js",
     "mcp_config": {
       "command": "node",
-      "args": ["${__dirname}/dist/index.js"]
+      "args": [
+        "${__dirname}/dist/index.js"
+      ],
+      "env": {
+        "DROPIFY_TOKEN": "${user_config.token}"
+      }
     }
   },
   "tools": [
-    { "name": "find_brand", "description": "Fuzzy-match an artist or brand name against Dropify's tracked brands." },
-    { "name": "official_stores", "description": "List the official stores Dropify tracks for a brand." },
-    { "name": "restock_alert_link", "description": "Get the Dropify page where restock and drop alerts are set for a brand." }
+    {
+      "name": "find_brand",
+      "description": "Fuzzy-match an artist or brand name against Dropify's tracked brands."
+    },
+    {
+      "name": "official_stores",
+      "description": "List the official stores Dropify tracks for a brand."
+    },
+    {
+      "name": "restock_alert_link",
+      "description": "Get the Dropify page where restock and drop alerts are set for a brand."
+    },
+    {
+      "name": "my_access",
+      "description": "What this token can read."
+    },
+    {
+      "name": "list_artists",
+      "description": "Artists on your plan, with an optional name filter."
+    },
+    {
+      "name": "list_stores",
+      "description": "Stores on your plan, or one artist's stores."
+    },
+    {
+      "name": "list_products",
+      "description": "The newest products, filtered by artist, store or stock."
+    },
+    {
+      "name": "get_product",
+      "description": "One product, with price and stock for each size."
+    },
+    {
+      "name": "search_products",
+      "description": "Word search across products."
+    },
+    {
+      "name": "recent_changes",
+      "description": "Restocks, new drops, price changes and sell-outs since a time you set."
+    }
   ],
   "compatibility": {
-    "runtimes": { "node": ">=20.0.0" }
+    "runtimes": {
+      "node": ">=20.0.0"
+    }
+  },
+  "user_config": {
+    "token": {
+      "type": "string",
+      "title": "Dropify token",
+      "description": "Optional. Adds the product, search and change tools. Create one at https://app.dropify.cloud/developers.",
+      "sensitive": true,
+      "required": false
+    }
   }
 }

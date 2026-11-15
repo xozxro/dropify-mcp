@@ -4,15 +4,19 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { readFileSync } from "node:fs";
 import { z } from "zod";
 import { findBrand, officialStores, restockAlertLink } from "./tools.js";
+import { INSTRUCTIONS, registerTokenTools } from "./tokenTools.js";
 
 const { version } = JSON.parse(
   readFileSync(new URL("../package.json", import.meta.url), "utf8"),
 ) as { version: string };
 
-const server = new McpServer({
-  name: "dropify-mcp",
-  version,
-});
+const server = new McpServer(
+  {
+    name: "dropify-mcp",
+    version,
+  },
+  { instructions: INSTRUCTIONS },
+);
 
 function textResult(text: string) {
   return { content: [{ type: "text" as const, text }] };
@@ -56,6 +60,8 @@ server.registerTool(
   },
   async ({ brand }) => textResult(await restockAlertLink(brand)),
 );
+
+registerTokenTools(server);
 
 async function main() {
   const transport = new StdioServerTransport();

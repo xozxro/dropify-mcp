@@ -1,0 +1,250 @@
+[
+  {
+    "name": "my_access",
+    "title": "Check token access",
+    "description": "Returns this token's plan and the artists it covers. A null artist list means every artist and store. Call it first to learn what you can read.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "list_artists",
+    "title": "List artists",
+    "description": "Lists the artists and brands this token reads, ordered by popularity, then name. Each has an id, slug, category, image, Dropify page and store count. Use it to find an artist's id or slug before you filter other tools.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Part of an artist or brand name, in any case."
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
+          "default": 20,
+          "description": "How many to return, 1 to 100. Default 20."
+        },
+        "offset": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "How many to skip, for paging."
+        }
+      },
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "list_stores",
+    "title": "List stores",
+    "description": "Lists the stores this token reads, with name, store URL, region, currency and artist. Pass an artist to get only that artist's stores. Regions are US, UK, EU, CA, AU, JP and KR. Use it to find a store id.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "artist": {
+          "type": "string",
+          "description": "An artist id or slug from list_artists."
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
+          "default": 20,
+          "description": "How many to return, 1 to 100. Default 20."
+        },
+        "offset": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "How many to skip, for paging."
+        }
+      },
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "list_products",
+    "title": "List products",
+    "description": "Lists products, newest first, with name, price, currency, stock, image and store link. Filter by artist, store or stock. Pass nextCursor back as cursor for the next page. Use search_products when you have words to match.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "artist": {
+          "type": "string",
+          "description": "An artist id or slug from list_artists."
+        },
+        "store": {
+          "type": "string",
+          "description": "A store id from list_stores."
+        },
+        "in_stock": {
+          "type": "boolean",
+          "description": "True for in-stock products only, false for sold-out only."
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50,
+          "default": 10,
+          "description": "How many to return, 1 to 50. Default 10."
+        },
+        "cursor": {
+          "type": "string",
+          "description": "The nextCursor value from the page before."
+        }
+      },
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "get_product",
+    "title": "Get a product",
+    "description": "Returns one product by id. Each variant, such as a size, has its own price, stock and quantity. Use it after a list or search when you need stock by size. Quantity is null unless the store's count is known.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "A product id from list_products, search_products or recent_changes."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "search_products",
+    "title": "Search products",
+    "description": "Searches products by word and returns the same fields as list_products. Use it when someone names an item, like a hoodie or a vinyl. Narrow it with artist, store or in_stock. A search across every store ranks by best match. Within an artist or store, results list newest first.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Words to match, 2 to 100 characters."
+        },
+        "artist": {
+          "type": "string",
+          "description": "An artist id or slug from list_artists."
+        },
+        "store": {
+          "type": "string",
+          "description": "A store id from list_stores."
+        },
+        "in_stock": {
+          "type": "boolean",
+          "description": "True for in-stock products only, false for sold-out only."
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50,
+          "default": 10,
+          "description": "How many to return, 1 to 50. Default 10."
+        },
+        "offset": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 200,
+          "description": "How many to skip, 0 to 200."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "query"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "recent_changes",
+    "title": "List recent changes",
+    "description": "Returns the change feed, newest first. It covers restocks, new drops, price drops and rises, sell-outs and stock changes. Each change has its product, store, artist and time. Price and quantity come with their previous values. It returns the last 30 days unless you pass since. Use it for what restocked, dropped or changed price.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "artist": {
+          "type": "string",
+          "description": "An artist id or slug from list_artists."
+        },
+        "store": {
+          "type": "string",
+          "description": "A store id from list_stores."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "new",
+            "restock",
+            "price_drop",
+            "price_increase",
+            "stock_up",
+            "stock_down",
+            "sold_out"
+          ],
+          "description": "One of new, restock, price_drop, price_increase, sold_out, stock_up or stock_down."
+        },
+        "since": {
+          "type": "string",
+          "description": "Only changes after this ISO-8601 time, like 2026-11-14T00:00:00Z. Default 30 days ago."
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50,
+          "default": 10,
+          "description": "How many to return, 1 to 50. Default 10."
+        },
+        "cursor": {
+          "type": "string",
+          "description": "The nextCursor value from the page before."
+        }
+      },
+      "additionalProperties": false
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  }
+]
