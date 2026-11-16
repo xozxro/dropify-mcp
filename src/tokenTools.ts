@@ -8,6 +8,12 @@ export const INSTRUCTIONS =
 export const NO_TOKEN_MESSAGE =
   "This tool needs a Dropify token. Create one at https://app.dropify.cloud/developers and set DROPIFY_TOKEN.";
 
+export const NOT_FOUND_MESSAGE = "Nothing found for that path or id.";
+
+// A product id is 24 hex characters; anything else cannot name a product, so it is answered
+// here instead of being put into a request path (where ".." would climb out of /products).
+const PRODUCT_ID = /^[0-9a-f]{24}$/i;
+
 const ANNOTATIONS = {
   readOnlyHint: true,
   destructiveHint: false,
@@ -131,7 +137,11 @@ export function registerTokenTools(server: McpServer): void {
       },
       annotations: ANNOTATIONS,
     },
-    async ({ id }) => call(`/products/${encodeURIComponent(id)}`, {}),
+    async ({ id }) => {
+      if (!readToken()) return fail(NO_TOKEN_MESSAGE);
+      if (!PRODUCT_ID.test(id)) return fail(NOT_FOUND_MESSAGE);
+      return call(`/products/${id}`, {});
+    },
   );
 
   server.registerTool(

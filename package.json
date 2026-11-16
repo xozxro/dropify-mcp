@@ -1,7 +1,7 @@
 {
   "name": "dropify-mcp",
   "version": "0.2.0",
-  "description": "Instant restock and drop alerts for official artist and brand merch stores. MCP server from Dropify.",
+  "description": "Your source for automatically updated data on 500k+ merch products, via API or MCP.",
   "license": "MIT",
   "type": "module",
   "bin": {

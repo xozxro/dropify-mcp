@@ -2,7 +2,7 @@
 
 # Dropify MCP server
 
-Your source for automatically updated data on 500k+ merch products, via MCP or API.
+Your source for automatically updated data on 500k+ merch products, via API or MCP.
 
 An MCP server for [Dropify](https://dropify.cloud).
 Dropify tracks official artist and brand merch stores.
@@ -71,32 +71,39 @@ In the examples below, swap `YOUR_TOKEN` for your own.
 ## Connect the hosted server
 
 The server URL is `https://production.dropify.cloud/api/v1/mcp`.
-Send your token as an `Authorization: Bearer` header.
+Claude Code, Cursor and Cline send your token as an `Authorization: Bearer` header.
+Claude and ChatGPT use your private URL, which ends in your token.
+`https://production.dropify.cloud/api/v1/mcp/YOUR_TOKEN`
+That URL carries your token, so keep it to yourself.
 
 ### Claude setup
 
-Works in Claude on the web, desktop and mobile.
+Works in Claude on the web and desktop.
 
-1. Open Customize, then Connectors, and choose Add custom connector.
-2. Paste the server URL.
-3. Under Request headers, set `Authorization` to `Bearer YOUR_TOKEN`.
+1. Open Customize, then Connectors. Click + Add, then Add custom connector.
+2. Name it Dropify and paste your private URL.
+3. Under Authentication, pick No sign-in, then click Add.
 
 Every Claude plan has custom connectors, and Free allows one.
+On Team and Enterprise, an owner adds it in Organization settings.
 
 ### ChatGPT setup
 
 1. Open chatgpt.com/plugins, press the plus, and choose Add custom MCP server.
-2. Paste your private URL: `https://production.dropify.cloud/api/v1/mcp/YOUR_TOKEN`
-3. Choose no authentication.
+2. Name it Dropify and paste your private URL under Connection.
+3. Set authentication to none.
+4. Tick I understand and want to continue, then select Create as a plugin.
 
-That URL carries your token, so keep it to yourself.
-OpenAI offers custom MCP servers on Pro (read and fetch), Business, Edu and Enterprise.
+Custom MCP servers need ChatGPT Business, Enterprise or Edu, on the web.
+On Business, an admin or owner adds it.
 
 ### Claude Code setup
 
 ```
 claude mcp add --transport http dropify https://production.dropify.cloud/api/v1/mcp --header "Authorization: Bearer YOUR_TOKEN"
 ```
+
+Then run `/mcp` in Claude Code to check the server's status.
 
 ### Cursor setup
 

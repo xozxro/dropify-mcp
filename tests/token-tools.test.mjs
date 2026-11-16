@@ -129,7 +129,8 @@ const cases = [
     { artist: "a1", store: "s1", in_stock: "false", limit: "7", cursor: "abc" },
   ],
   ["list_products", {}, "/products", { limit: "10" }],
-  ["get_product", { id: "p 1/2" }, "/products/p%201%2F2", {}],
+  ["get_product", { id: "0123456789abcdef01234567" }, "/products/0123456789abcdef01234567", {}],
+  ["get_product", { id: "0123456789ABCDEF01234567" }, "/products/0123456789ABCDEF01234567", {}],
   [
     "search_products",
     { query: "hoodie", artist: "a1", store: "s1", in_stock: true, limit: 4, offset: 8 },
@@ -155,6 +156,15 @@ for (const [name, args, endpoint, expected] of cases) {
     assert.match(call.headers["User-Agent"], /^dropify-mcp\//);
   });
 }
+
+test("get_product answers an id that cannot name a product without making a request", async () => {
+  for (const id of ["p 1/2", "..", ".", "", "../me", "0123456789abcdef0123456", "0123456789abcdef012345678", "g123456789abcdef01234567"]) {
+    const result = await client.callTool({ name: "get_product", arguments: { id } });
+    assert.equal(result.isError, true, JSON.stringify(id));
+    assert.deepEqual(result.content, [{ type: "text", text: "Nothing found for that path or id." }], JSON.stringify(id));
+  }
+  assert.equal(calls.length, 0);
+});
 
 test("the result carries the body as text and as structured content", async () => {
   const body = { plan: "all_access", artists: null };

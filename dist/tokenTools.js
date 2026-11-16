@@ -2,6 +2,10 @@ import { z } from "zod";
 import { INTERNAL_MESSAGE, readToken, v1Get, V1Error } from "./api.js";
 export const INSTRUCTIONS = "Dropify tracks official artist and brand merch stores. Stores span the US, UK, EU, Canada, Australia, Japan and Korea. The data is read-only and updates automatically. Call my_access first to see what this token reads. Use list_artists and list_stores to find ids. Use search_products to match words and list_products for the newest products. Use get_product for stock by size. Use recent_changes for restocks, new drops, price changes and sell-outs. It returns the last 30 days unless you pass since. Prices are in each store's currency. Quantity is null unless the store's count is known. Link to a product's url when you mention it.";
 export const NO_TOKEN_MESSAGE = "This tool needs a Dropify token. Create one at https://app.dropify.cloud/developers and set DROPIFY_TOKEN.";
+export const NOT_FOUND_MESSAGE = "Nothing found for that path or id.";
+// A product id is 24 hex characters; anything else cannot name a product, so it is answered
+// here instead of being put into a request path (where ".." would climb out of /products).
+const PRODUCT_ID = /^[0-9a-f]{24}$/i;
 const ANNOTATIONS = {
     readOnlyHint: true,
     destructiveHint: false,
@@ -92,7 +96,13 @@ export function registerTokenTools(server) {
             id: z.string().describe("A product id from list_products, search_products or recent_changes."),
         },
         annotations: ANNOTATIONS,
-    }, async ({ id }) => call(`/products/${encodeURIComponent(id)}`, {}));
+    }, async ({ id }) => {
+        if (!readToken())
+            return fail(NO_TOKEN_MESSAGE);
+        if (!PRODUCT_ID.test(id))
+            return fail(NOT_FOUND_MESSAGE);
+        return call(`/products/${id}`, {});
+    });
     server.registerTool("search_products", {
         title: "Search products",
         description: "Searches products by word and returns the same fields as list_products. Use it when someone names an item, like a hoodie or a vinyl. Narrow it with artist, store or in_stock. A search across every store ranks by best match. Within an artist or store, results list newest first.",

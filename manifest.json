@@ -3,8 +3,8 @@
   "name": "dropify-mcp",
   "display_name": "Dropify",
   "version": "0.2.0",
-  "description": "Instant restock and drop alerts for official artist and brand merch stores.",
-  "long_description": "Look up the official merch stores for an artist or brand. Then get the page where restock and drop alerts are set. Read-only, straight from Dropify's public API.",
+  "description": "Your source for automatically updated data on 500k+ merch products, via API or MCP.",
+  "long_description": "Dropify tracks official artist and brand merch stores. Stores span the US, UK, EU, Canada, Australia, Japan and Korea. The API and MCP server read 500k+ products. Each has price, currency, stock, image and store link. Each product's detail adds stock by size. A change feed lists restocks, new drops, price changes and sell-outs. It's read-only. Tokens come with All Access.",
   "author": {
     "name": "Dropify",
     "url": "https://dropify.cloud"
