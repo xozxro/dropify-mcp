@@ -1,0 +1,25 @@
+{
+  "name": "dropify",
+  "version": "0.2.1",
+  "description": "The hub for official-store product data: prices, stock and restocks on 500k+ merch products. Product tools need a Dropify token.",
+  "mcpServers": {
+    "dropify": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "github:xozxro/dropify-mcp"
+      ],
+      "env": {
+        "DROPIFY_TOKEN": "$DROPIFY_TOKEN"
+      }
+    }
+  },
+  "settings": [
+    {
+      "name": "Dropify token",
+      "description": "Optional. Adds the 7 token tools. Create one at https://app.dropify.cloud/developers.",
+      "envVar": "DROPIFY_TOKEN",
+      "sensitive": true
+    }
+  ]
+}

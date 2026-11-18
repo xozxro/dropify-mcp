@@ -2,7 +2,7 @@
 
 # Dropify MCP server
 
-Your source for automatically updated data on 500k+ merch products, via API or MCP.
+The hub for official-store product data. Prices, stock, restocks and new drops on 500k+ merch products, by API or MCP.
 
 An MCP server for [Dropify](https://dropify.cloud).
 Dropify tracks official artist and brand merch stores.
@@ -17,7 +17,7 @@ Everything is read-only.
 | --- | --- | --- |
 | Runs | On Dropify, over streamable HTTP | On your machine, over stdio |
 | Address | `https://production.dropify.cloud/api/v1/mcp` | `npx -y github:xozxro/dropify-mcp` |
-| Tools | The token tools | The keyless tools, plus the token tools |
+| Tools | 7, and all need a token | 10: the same 7, plus 3 that work without a token |
 | Needs | A Dropify token | Node 20+, and a token for the token tools |
 
 ## Token tools
@@ -61,8 +61,8 @@ https://dropify.cloud/request.
 ## Get a token
 
 Tokens come with All Access.
-Create one at https://app.dropify.cloud/developers.
-A token reads what your plan includes.
+All Access covers the site, the API and MCP.
+Create a token at https://app.dropify.cloud/developers.
 All Access reads every artist and store.
 We show a token once, and you can revoke it any time.
 
@@ -91,7 +91,7 @@ On Team and Enterprise, an owner adds it in Organization settings.
 
 1. Open chatgpt.com/plugins, press the plus, and choose Add custom MCP server.
 2. Name it Dropify and paste your private URL under Connection.
-3. Set authentication to none.
+3. Pick No authentication.
 4. Tick I understand and want to continue, then select Create as a plugin.
 
 Custom MCP servers need ChatGPT Business, Enterprise or Edu, on the web.
@@ -218,6 +218,7 @@ claude mcp add --env DROPIFY_TOKEN=YOUR_TOKEN --transport stdio dropify -- npx -
 ## Use the REST API
 
 The same token reads the same data over REST.
+Each account gets 120 requests a minute and 5,000 a day. Up to 20 a minute can be searches. A day also tops out at 50,000 rows.
 
 ```
 curl -H "Authorization: Bearer YOUR_TOKEN" "https://production.dropify.cloud/api/v1/changes?type=restock&limit=5"

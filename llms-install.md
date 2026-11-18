@@ -24,13 +24,13 @@ Add this entry to the MCP settings file (`cline_mcp_settings.json`):
 Ask the user for their token and put it in place of `YOUR_TOKEN`.
 Never make one up.
 If they have no token, leave out the `env` block.
-Tokens come with All Access and are created at https://app.dropify.cloud/developers.
+Tokens come with All Access, the plan that also covers the Dropify site. The user creates one at https://app.dropify.cloud/developers.
 
 The built server is committed, so there is no build step.
 
 ## Hosted option
 
-Dropify also hosts the token tools, with nothing to install.
+Dropify also hosts the seven token tools, with nothing to install.
 Use this entry instead:
 
 ```json

@@ -6,7 +6,7 @@ Copy for MCP directories and registries.
 
 - **Name:** dropify-mcp
 - **Title:** Dropify
-- **One-line:** Prices, stock and restocks for 500k+ products from official artist and brand merch stores.
+- **One-line:** The hub for official-store product data: prices, stock and restocks on 500k+ merch products.
 - **Repository:** https://github.com/xozxro/dropify-mcp
 - **Homepage:** https://dropify.cloud
 - **Docs:** https://dropify.cloud/developers
@@ -15,21 +15,25 @@ Copy for MCP directories and registries.
 - **Hosted URL:** `https://production.dropify.cloud/api/v1/mcp`
 - **Run:** `npx -y github:xozxro/dropify-mcp`
 - **Auth:** a Dropify token as a Bearer header, or `DROPIFY_TOKEN` locally; none for keyless tools
-- **Topics:** dropify, mcp, mcp-server, model-context-protocol, remote-mcp-server, api, rest-api, openapi, product-data, ecommerce, price-tracking, inventory, restock-alerts, merch, merch-alerts, music, ai-agents, claude, chatgpt, cursor
+- **Topics:** dropify, mcp, mcp-server, model-context-protocol, remote-mcp-server, api, rest-api, openapi, product-data, ecommerce, price-tracking, inventory, restock-alerts, merch, merch-alerts, music, ai-agents, claude, chatgpt, cursor, gemini-cli-extension
 
 ## Short description
 
-Your source for automatically updated data on 500k+ merch products, via API or MCP.
+The hub for official-store product data. Prices, stock, restocks and new drops on 500k+ merch products, by API or MCP.
 
 ## Long description
 
-Dropify tracks official artist and brand merch stores.
+Dropify is the hub for official-store product data.
+It tracks official artist and brand merch stores.
 Stores span the US, UK, EU, Canada, Australia, Japan and Korea.
-The API and MCP server read 500k+ products. Each has price, currency, stock, image and store link.
+The API and MCP server read 500k+ products.
+Each has price, currency, stock, image and store link.
 Each product's detail adds stock by size.
 A change feed lists restocks, new drops, price changes and sell-outs.
-It's read-only.
+This bundle has 10 read-only tools.
+Seven need a Dropify token, and three work without one.
 Tokens come with All Access.
+All Access covers the site, the API and MCP.
 
 ## Tool names
 

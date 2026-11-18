@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.xozxro/dropify-mcp",
   "title": "Dropify",
-  "description": "Prices, stock and restocks for 500k+ products from official artist and brand merch stores.",
-  "version": "0.2.0",
+  "description": "The hub for official-store product data: prices, stock and restocks on 500k+ merch products.",
+  "version": "0.2.1",
   "websiteUrl": "https://dropify.cloud",
   "repository": {
     "url": "https://github.com/xozxro/dropify-mcp",
@@ -12,15 +12,15 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/xozxro/dropify-mcp/releases/download/v0.2.0/dropify-mcp-0.2.0.mcpb",
-      "fileSha256": "e9cb564b260e7c11204d709276351354d04e5e6634287ba2a3024504bd7eaffc",
+      "identifier": "https://github.com/xozxro/dropify-mcp/releases/download/v0.2.1/dropify-mcp-0.2.1.mcpb",
+      "fileSha256": "0000000000000000000000000000000000000000000000000000000000000000",
       "transport": {
         "type": "stdio"
       },
       "environmentVariables": [
         {
           "name": "DROPIFY_TOKEN",
-          "description": "Optional. Adds the product, search and change tools. Create one at https://app.dropify.cloud/developers.",
+          "description": "Optional. Adds the 7 token tools to the 3 that work without one. Tokens come with All Access. Create one at https://app.dropify.cloud/developers.",
           "isRequired": false,
           "isSecret": true,
           "format": "string"
@@ -35,7 +35,7 @@
       "headers": [
         {
           "name": "Authorization",
-          "description": "Your Dropify token, sent as Bearer and the token. Create one at https://app.dropify.cloud/developers.",
+          "description": "Bearer YOUR_TOKEN, with your Dropify token in place of YOUR_TOKEN. Tokens come with All Access. Create one at https://app.dropify.cloud/developers.",
           "isRequired": true,
           "isSecret": true
         }
