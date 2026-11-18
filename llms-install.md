@@ -2,7 +2,7 @@
 
 dropify-mcp is a stdio MCP server for Node 20+.
 It starts with no API key and no environment variables.
-A Dropify token in `DROPIFY_TOKEN` adds the product, search and change tools.
+A Dropify token in `DROPIFY_TOKEN` adds the seven token tools.
 
 Add this entry to the MCP settings file (`cline_mcp_settings.json`):
 

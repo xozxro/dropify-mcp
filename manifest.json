@@ -2,7 +2,7 @@
   "manifest_version": "0.3",
   "name": "dropify-mcp",
   "display_name": "Dropify",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "The hub for official-store product data. Prices, stock, restocks and new drops on 500k+ merch products, by API or MCP.",
   "long_description": "Dropify is the hub for official-store product data. It tracks official artist and brand merch stores. Stores span the US, UK, EU, Canada, Australia, Japan and Korea. The API and MCP server read 500k+ products. Each has price, currency, stock, image and store link. Each product's detail adds stock by size. A change feed lists restocks, new drops, price changes and sell-outs. This bundle has 10 read-only tools. Seven need a Dropify token, and three work without one. Tokens come with All Access. All Access covers the site, the API and MCP.",
   "author": {

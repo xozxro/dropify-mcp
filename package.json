@@ -1,6 +1,6 @@
 {
   "name": "dropify-mcp",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "The hub for official-store product data. Prices, stock, restocks and new drops on 500k+ merch products, by API or MCP.",
   "license": "MIT",
   "type": "module",

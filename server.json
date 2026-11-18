@@ -3,8 +3,15 @@
   "name": "io.github.xozxro/dropify-mcp",
   "title": "Dropify",
   "description": "The hub for official-store product data: prices, stock and restocks on 500k+ merch products.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "websiteUrl": "https://dropify.cloud",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/xozxro/dropify-mcp/main/logo.png",
+      "mimeType": "image/png",
+      "sizes": ["400x400"]
+    }
+  ],
   "repository": {
     "url": "https://github.com/xozxro/dropify-mcp",
     "source": "github"
@@ -12,8 +19,8 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/xozxro/dropify-mcp/releases/download/v0.2.1/dropify-mcp-0.2.1.mcpb",
-      "fileSha256": "049d9a487d854405778c68e07235dafe608400dbbe498645c3d97f47b034b690",
+      "identifier": "https://github.com/xozxro/dropify-mcp/releases/download/v0.2.2/dropify-mcp-0.2.2.mcpb",
+      "fileSha256": "0000000000000000000000000000000000000000000000000000000000000000",
       "transport": {
         "type": "stdio"
       },

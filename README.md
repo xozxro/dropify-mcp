@@ -215,6 +215,15 @@ Add this to `cline_mcp_settings.json`:
 claude mcp add --env DROPIFY_TOKEN=YOUR_TOKEN --transport stdio dropify -- npx -y github:xozxro/dropify-mcp
 ```
 
+### Gemini CLI
+
+```
+gemini extensions install https://github.com/xozxro/dropify-mcp
+```
+
+Gemini CLI asks for your token while it installs.
+Add `--skip-settings` to run the keyless tools alone.
+
 ## Use the REST API
 
 The same token reads the same data over REST.
