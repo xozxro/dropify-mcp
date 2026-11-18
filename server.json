@@ -13,7 +13,7 @@
     {
       "registryType": "mcpb",
       "identifier": "https://github.com/xozxro/dropify-mcp/releases/download/v0.2.1/dropify-mcp-0.2.1.mcpb",
-      "fileSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "fileSha256": "049d9a487d854405778c68e07235dafe608400dbbe498645c3d97f47b034b690",
       "transport": {
         "type": "stdio"
       },
